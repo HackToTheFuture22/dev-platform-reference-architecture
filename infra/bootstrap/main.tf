@@ -23,7 +23,7 @@ terraform {
 }
 
 variable "do_token" {
-  default = ""
+  default     = ""
   description = "Access token for Digital Ocean"
 }
 
@@ -32,7 +32,7 @@ variable "hcp_client_id" {
 }
 
 variable "hcp_client_secret" {
-  
+
   description = "Service Principal client id"
 }
 
