@@ -44,3 +44,16 @@ provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
 }
+
+variable "vault_addr" {
+  description = "Vault address"
+}
+
+variable "vault_token" {
+  description = "Vault token"
+}
+
+provider "vault" {
+  address = var.vault_addr
+  token   = var.vault_token
+}
