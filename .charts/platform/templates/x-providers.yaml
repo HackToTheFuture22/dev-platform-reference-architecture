@@ -1,0 +1,18 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-digitalocean
+spec:
+  package: xpkg.upbound.io/digitalocean/provider-digitalocean:v0.2.0
+---
+apiVersion: do.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: do-config
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: provider-do-secret
+      key: token
