@@ -15,11 +15,11 @@ model User { 
   id String @id
   password String
   contactInformation ContactInformation @relation(fields: [contactInformationId], references: [email])
-  contactInformationId String
+  contactInformationId String @unique
 }
 
 model ContactInformation {
-  email String @unique
+  email String @id
   verificationCode String
   isVerified Boolean @default(false)
   user User?
