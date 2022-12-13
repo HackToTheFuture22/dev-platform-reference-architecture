@@ -27,6 +27,6 @@ init:
 	@bin/setup.sh
 
 run:
-	@bin/dev.sh
+	@bin/run.sh
 
 dev: init run
