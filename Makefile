@@ -39,3 +39,6 @@ ensure-kind-cluster: kind-is-installed
 
 init-platform: init
 	@bin/setup-platform-dev.sh
+
+build:
+	@bin/build.sh ./nest-clean-architecture-ddd-example
