@@ -32,6 +32,10 @@
       "@identity-and-access/*": ["identity-and-access/src/*"],
       "@notifications": ["notifications/src"],
       "@notifications/*": ["notifications/src/*"],
+      "@dora": ["dora/src"],
+      "@dora/*": ["dora/src/*"],
+      "@vcs": ["vcs/src"],
+      "@vcs/*": ["vcs/src/*"],
     }
   }
 }

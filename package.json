@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
+    "@nestjs/schematics": "^9.0.3",
     "@nestjs/testing": "^8.0.6",
     "@types/jest": "^26.0.23",
     "@types/passport-jwt": "^3.0.6",

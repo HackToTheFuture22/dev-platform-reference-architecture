@@ -10,6 +10,8 @@ import { DynamicModule, ForwardReference, Module, OnModuleInit, Type } from '@ne
 import { CqrsModule } from '@nestjs/cqrs';
 import { NotificationsModule } from '@notifications/notifications.module';
 import { FeatureModule } from '@common/features/features.module';
+import { VcsModule } from '@vcs/vcs.module';
+import { DoraModule } from '@dora/dora.module';
 
 type NestModuleImport = Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference<any>;
 
@@ -21,7 +23,9 @@ const appModules: NestModuleImport[] = [
   DomainEventPublisherModule, 
   NotificationsModule, 
   PrismaModule, 
-  IdentityAndAccessModule];
+  IdentityAndAccessModule, 
+  VcsModule, 
+  DoraModule];
 
 // Infrastructure Modules (DB, config) used by the server
 const infrastructureModules: NestModuleImport[] = [];
