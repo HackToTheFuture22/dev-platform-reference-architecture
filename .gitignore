@@ -5,9 +5,13 @@ infra/bootstrap/.terraform/
 /node_modules
 /coverage
 
+# nest clean example
+/nest-clean-architecture-ddd-example
+
 # OS
 .DS_Store
 
 # IDE - VSCode
 .vscode/*
+.idea/
 
