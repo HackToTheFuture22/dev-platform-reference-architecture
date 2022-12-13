@@ -1,0 +1,17 @@
+#!/bin/bash
+
+KIND_CLUSTER_NAME=$1
+KIND_CLUSTER_CONTEXT=kind-${KIND_CLUSTER_NAME}
+
+list_contexts () {
+  kubectl config get-contexts | awk '{print $3}'
+}
+
+if [[ $(list_contexts | grep -c "^${KIND_CLUSTER_CONTEXT}") -eq 0 ]]
+  then
+    echo "kind create cluster --name ${KIND_CLUSTER_NAME}"
+    kind create cluster --name "${KIND_CLUSTER_NAME}"
+fi
+
+echo "kubectl config use-context ${KIND_CLUSTER_CONTEXT}"
+kubectl config use-context "${KIND_CLUSTER_CONTEXT}"

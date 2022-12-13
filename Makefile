@@ -26,7 +26,8 @@ helm-is-installed:
 init:
 	@bin/setup.sh
 
-run:
+dev: init
 	@bin/run.sh
 
-dev: init run
+ensure-kind-cluster: kind-is-installed
+	@./bin/ensure-kind-cluster dora-app
