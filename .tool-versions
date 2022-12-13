@@ -2,3 +2,4 @@ terraform 1.3.6
 nodejs 18.12.1
 kind 0.17.0
 yarn 1.22.19
+doctl 1.90.0
