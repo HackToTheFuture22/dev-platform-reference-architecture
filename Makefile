@@ -26,8 +26,13 @@ helm-is-installed:
 init:
 	@bin/setup.sh
 
+<<<<<<< HEAD
 dev: init
 	@bin/run.sh
 
 ensure-kind-cluster: kind-is-installed
 	@./bin/ensure-kind-cluster dora-app
+=======
+init-platform: init
+	@bin/setup-platform-dev.sh
+>>>>>>> e54ba55 (platform(dev-init): depend on `init`)
