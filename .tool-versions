@@ -3,3 +3,4 @@ nodejs 18.12.1
 kind 0.17.0
 yarn 1.22.19
 doctl 1.90.0
+crossplane-cli 1.9.1
