@@ -34,3 +34,6 @@ dev: init docker-is-installed
 
 ensure-kind-cluster: kind-is-installed
 	@./bin/ensure-kind-cluster dora-app
+
+init-platform: init
+	@bin/setup-platform-dev.sh
