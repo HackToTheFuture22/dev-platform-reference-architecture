@@ -25,3 +25,8 @@ helm-is-installed:
 
 init:
 	@bin/setup.sh
+
+run:
+	@bin/dev.sh
+
+dev: init run
