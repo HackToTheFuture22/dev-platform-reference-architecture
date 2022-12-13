@@ -4,7 +4,7 @@
   "author": "Vincent JOUANNE",
   "license": "MIT",
   "scripts": {
-    "build": "nest build api-gateway",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider nest build api-gateway",
     "start": "NODE_OPTIONS=--openssl-legacy-provider nest start api-gateway",
     "test:unit": "jest --config ./jest-unit.json --coverage",
     "test:inte": "yarn prisma:migrate && jest --config ./jest-integration.json --runInBand",
