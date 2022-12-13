@@ -23,10 +23,13 @@ aws-cli-is-installed:
 helm-is-installed:
 	@$(call is_installed,helm)
 
+docker-is-installed:
+	@$(call is_installed,docker)
+
 init:
 	@bin/setup.sh
 
-dev: init
+dev: init docker-is-installed
 	@bin/run.sh
 
 ensure-kind-cluster: kind-is-installed
