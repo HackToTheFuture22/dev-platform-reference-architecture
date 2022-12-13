@@ -1,4 +1,5 @@
 import { DomainEventPublisherModule } from '@common/domain-event-publisher/domainEventPublisher.module';
+import { FeatureModule } from '@common/features/features.module';
 import { LoggerModule } from '@common/logger/logger.module';
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
@@ -25,15 +26,17 @@ const repositories = [{
   useClass: RealUserRepository,
 }]
 
-@Module({
-  imports: [CqrsModule, DomainEventPublisherModule, LoggerModule, NotificationsModule, JwtModule.register({
+const imports = [CqrsModule, DomainEventPublisherModule, FeatureModule, LoggerModule, NotificationsModule, JwtModule.register({
     signOptions: { expiresIn: '15m' },
-  })],
+  })];
+
+@Module({
+  imports,
   providers: [
     ...controllers,
     ...commandHandlers,
     ...services,
-    ...repositories
+    ...repositories,
   ],
   exports: [...controllers, RealAuthenticationService],
 })

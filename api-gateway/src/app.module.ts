@@ -9,11 +9,19 @@ import { UsersController } from '@identity-and-access/infrastructure/adapters/pr
 import { DynamicModule, ForwardReference, Module, OnModuleInit, Type } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { NotificationsModule } from '@notifications/notifications.module';
+import { FeatureModule } from '@common/features/features.module';
 
 type NestModuleImport = Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference<any>;
 
 // SubModule used by the server
-const appModules: NestModuleImport[] = [CqrsModule, LoggerModule, DomainEventPublisherModule, NotificationsModule, PrismaModule, IdentityAndAccessModule];
+const appModules: NestModuleImport[] = [
+  CqrsModule, 
+  LoggerModule, 
+  FeatureModule,
+  DomainEventPublisherModule, 
+  NotificationsModule, 
+  PrismaModule, 
+  IdentityAndAccessModule];
 
 // Infrastructure Modules (DB, config) used by the server
 const infrastructureModules: NestModuleImport[] = [];

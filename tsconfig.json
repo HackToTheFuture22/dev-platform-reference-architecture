@@ -22,6 +22,8 @@
       "@common/logger/*": ["common/logger/src/*"],
       "@common/domain-event-publisher": ["common/domain-event-publisher/src"],
       "@common/domain-event-publisher/*": ["common/domain-event-publisher/src/*"],
+      "@common/features": ["common/features/src"],
+      "@common/features/*": ["common/features/src/*"],
       "@common/prisma": ["common/prisma/src"],
       "@common/prisma/*": ["common/prisma/src/*"],
       "@common/utils": ["common/utils"],

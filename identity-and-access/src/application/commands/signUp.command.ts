@@ -1,4 +1,5 @@
 import { DomainEventPublisher } from '@common/domain-event-publisher/adapters/domainEventPublisher';
+import { FeatureManager } from '@common/features/adapters/featureManager.service';
 import { PinoLoggerService } from '@common/logger/adapters/real/pinoLogger.service';
 import { executeTask } from '@common/utils/executeTask';
 import { fromUnknown } from '@common/utils/fromUnknown';
@@ -21,7 +22,6 @@ export class SignUp implements ICommand {
   constructor(public readonly email: string, public readonly password: string) { }
 }
 
-export type Feature = <TPrev, TNew>(featureName: string, enabled: () => TNew, disabled: () => TPrev) => TNew | TPrev;
 @CommandHandler(SignUp)
 export class SignUpHandler implements ICommandHandler {
   constructor(
@@ -30,17 +30,13 @@ export class SignUpHandler implements ICommandHandler {
     private readonly hashingService: RealHashingService,
     private readonly userRepository: UserRepository,
     private readonly domainEventPublisher: DomainEventPublisher,
-    private readonly logger: PinoLoggerService,
-    private readonly feature: Feature
+    private readonly logger: PinoLoggerService 
   ) {
     this.logger.setContext('SignUp');
   }
 
   execute(command: SignUp): Promise<void> {
-    const {email, password} = this.feature('signUpV2', 
-        () => command, // if the feature is enabled, the command is passed to the function
-        () => ({email: command.email, password: command.password}) // if the feature is disabled, the command is transformed to the old format
-      );
+    const {email, password} =  command;     
 
     const task = pipe(
       //Data validation
