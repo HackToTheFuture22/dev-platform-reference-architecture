@@ -15,18 +15,33 @@ resource "hcp_vault_cluster" "vault_cluster" {
   }
 }
 
-resource "vault_mount" "kvv2" {
+resource "vault_mount" "kvv2_platform" {
   path        = "kvv2"
   type        = "kv"
   options     = { version = "2" }
   description = "KV Version 2 secret engine mount"
 }
 
-resource "vault_kv_secret_backend_v2" "config" {
-  mount        = vault_mount.kvv2.path
+resource "vault_kv_secret_backend_v2" "platform_config" {
+  mount        = vault_mount.kvv2_platform.path
   max_versions = 5
   cas_required = false
 }
+
+resource "vault_mount" "kvv2_apps" {
+  path        = "kvv2"
+  namespace   = "admin/apps"
+  type        = "kv"
+  options     = { version = "2" }
+  description = "KV Version 2 secret engine mount"
+}
+
+resource "vault_kv_secret_backend_v2" "app_config" {
+  mount        = vault_mount.kvv2_apps.path
+  max_versions = 5
+  cas_required = false
+}
+
 
 resource "vault_namespace" "apps" {
   path = "apps"
