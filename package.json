@@ -6,6 +6,7 @@
   "scripts": {
     "build": "NODE_OPTIONS=--openssl-legacy-provider nest build api-gateway",
     "start": "NODE_OPTIONS=--openssl-legacy-provider nest start api-gateway",
+    "start:watch": "yarn start -w",
     "test:unit": "jest --config ./jest-unit.json --coverage",
     "test:inte": "yarn prisma:migrate && jest --config ./jest-integration.json --runInBand",
     "test:e2e": "yarn prisma:migrate && jest --config ./jest-e2e.json --runInBand --forceExit",
