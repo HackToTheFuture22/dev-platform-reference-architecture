@@ -21,6 +21,7 @@ export class SignUp implements ICommand {
   constructor(public readonly email: string, public readonly password: string) { }
 }
 
+export type Feature = <TPrev, TNew>(featureName: string, enabled: () => TNew, disabled: () => TPrev) => TNew | TPrev;
 @CommandHandler(SignUp)
 export class SignUpHandler implements ICommandHandler {
   constructor(
@@ -30,12 +31,16 @@ export class SignUpHandler implements ICommandHandler {
     private readonly userRepository: UserRepository,
     private readonly domainEventPublisher: DomainEventPublisher,
     private readonly logger: PinoLoggerService,
+    private readonly feature: Feature
   ) {
     this.logger.setContext('SignUp');
   }
 
   execute(command: SignUp): Promise<void> {
-    const { email, password } = command;
+    const {email, password} = this.feature('signUpV2', 
+        () => command, // if the feature is enabled, the command is passed to the function
+        () => ({email: command.email, password: command.password}) // if the feature is disabled, the command is transformed to the old format
+      );
 
     const task = pipe(
       //Data validation
