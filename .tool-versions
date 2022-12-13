@@ -4,3 +4,6 @@ kind 0.17.0
 yarn 1.22.19
 doctl 1.90.0
 crossplane-cli 1.9.1
+devspace 6.2.2
+yq 4.30.5
+jq 1.6

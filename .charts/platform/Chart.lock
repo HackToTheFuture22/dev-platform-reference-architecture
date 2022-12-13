@@ -1,0 +1,9 @@
+dependencies:
+- name: traefikee
+  repository: https://traefik.github.io/charts
+  version: 1.6.0
+- name: crossplane
+  repository: https://charts.crossplane.io/stable
+  version: 1.10.1
+digest: sha256:b38a2287dbab958780441311c59ac58921dfa2cbbeb47a24d568f3291f5a185d
+generated: "2022-12-13T13:05:58.284789231-06:00"
