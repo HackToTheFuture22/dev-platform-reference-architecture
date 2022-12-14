@@ -1,0 +1,14 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: provider-do-secret
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-platform-backend
+    kind: SecretStore
+  data:
+  - secretKey: token
+    remoteRef:
+      key: kvv2/digitalocean_token
+      property: token
