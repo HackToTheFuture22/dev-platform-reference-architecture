@@ -10,11 +10,20 @@ resource "vault_kv_secret_v2" "traefik_ee_license" {
   data_json = jsonencode({ license = var.traefik_ee_license })
 }
 
-resource "vault_policy" "read" {
-  name   = "read-traefik"
+resource "vault_policy" "read_platform" {
+  name = "read-platform"
+
   policy = <<EOT
-  path "secret/traefik_ee_license" {
+  path "/kvv2/data/*" {
     capabilities = ["read"]
   }
-  EOT
+
+  path "sys/mounts" {
+    capabilities = ["read"]
+  }
+
+  path "sys/mounts/kvv2" {
+    capabilities = ["read"]
+  }
+EOT
 }
