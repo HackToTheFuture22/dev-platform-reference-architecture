@@ -1,0 +1,10 @@
+apiVersion: kubernetes.do.crossplane.io/v1alpha1
+kind: DOContainerRegistry
+metadata:
+  name: containers-anyvibes
+spec:
+  providerConfigRef:
+    name: do-config
+  forProvider:
+    subscriptionTier: "starter"
+    region: "ams3"
