@@ -29,8 +29,8 @@ docker-is-installed:
 
 init:
 	@bin/setup.sh
-	@yarn prisma:client --ignore-platform
-	@yarn prisma:migrate --ignore-platform
+	@yarn prisma:client
+	@yarn prisma:migrate
 
 dev: init docker-is-installed
 	@bin/run.sh
