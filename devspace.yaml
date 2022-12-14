@@ -1,0 +1,18 @@
+version: v2beta1
+name: platform
+vars:
+  TRAEFIKEE_LICENSE:
+    source: env
+deployments:
+  platform:
+    namespace: platform
+    helm:
+      chart:
+        name: ./.charts/platform
+      values:
+        traffic:
+          ingress:
+            traefikee:
+              license: ${TRAEFIKEE_LICENSE_BASE64}
+      valuesFiles:
+        - ./.charts/platform/values.yaml
