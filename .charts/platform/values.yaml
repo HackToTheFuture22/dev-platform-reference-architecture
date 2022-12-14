@@ -9,6 +9,12 @@ observability:
   installController: true
   installResources: false
 
+service:
+  port: 8080
+
+database:
+  enabled: true
+
 # -- List
 databases:
   - name: db-name # instruments local database
