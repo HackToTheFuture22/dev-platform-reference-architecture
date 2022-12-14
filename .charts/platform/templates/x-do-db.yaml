@@ -12,7 +12,7 @@ spec:
     region: nyc3
     tags:
       - "from-crossplane"
-  writeConnectionSecretToRef:
+  writeConnectionSecretToRef: 
     namespace: crossplane-system
     name: anyvibes-connections
   providerConfigRef:
