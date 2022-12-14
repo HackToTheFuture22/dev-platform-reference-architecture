@@ -10,3 +10,8 @@ generated: "2022-12-13T13:05:58.284789231-06:00"
 - name: cert-manager
   repository: https://charts.jetstack.io
   version: v1.10.1
+- name: metrics-server
+  repository: https://kubernetes-sigs.github.io/metrics-server/
+  version: 3.8.3
+digest: sha256:d73a746ee9d24ebf1c003cf287d8dc0ae4794ae9137994596525e58fbf03e347
+generated: "2022-12-13T21:00:56.643151624-06:00"
