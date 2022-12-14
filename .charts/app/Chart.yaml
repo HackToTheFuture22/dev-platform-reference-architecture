@@ -30,3 +30,4 @@ dependencies:
   - name: infrastructure-resources
     version: 0.1.0
     repository: file://../infrastructure-resources
+    condition: infrastructure-resources.enabled

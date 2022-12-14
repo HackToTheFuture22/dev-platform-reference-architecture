@@ -6,6 +6,7 @@ environment:
   production: true
 
 infrastructure-resources:
+  enabled: false
   databases:
     devPlatform:
       type: rdbms
