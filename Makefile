@@ -1,5 +1,7 @@
 GIT_COMMIT = $(shell git rev-parse HEAD)
 KIND_CLUSTER_NAME = dora-app
+APP_NAMESPACE = dora-app
+IMAGE_NAME = dora_app_image
 
 define is_installed
 if ! command -v $(1) &> /dev/null; \
@@ -41,8 +43,15 @@ ensure-kind-cluster: kind-is-installed
 clean: kind-is-installed
 	@kind delete cluster --name ${KIND_CLUSTER_NAME}
 
+kind-side-load: ensure-kind-cluster
+	@kind load docker-image ${IMAGE_NAME}:latest --name ${KIND_CLUSTER_NAME}
+
 init-platform: init
 	@bin/setup-platform-dev.sh
 
 build:
-	@bin/build.sh .
+	@bin/build.sh . ${IMAGE_NAME}
+
+local-dev: ensure-kind-cluster kind-side-load
+	@kubectl create ns ${APP_NAMESPACE} --dry-run=client -o yaml | kubectl apply -f -
+	@helm template dora-app .charts/app -n ${APP_NAMESPACE} -f .charts/app/values.dev.yaml | kubectl -n ${APP_NAMESPACE} apply -f -
