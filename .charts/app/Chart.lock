@@ -5,5 +5,8 @@ dependencies:
 - name: infrastructure-resources
   repository: file://../infrastructure-resources
   version: 0.1.0
-digest: sha256:346d1aeaf9a5d61f74cdb91e5d8385879ced52bd6dd6566638890f95e645380e
-generated: "2022-12-14T17:22:01.776863-06:00"
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.1.2
+digest: sha256:e6874c7a85469ea5267a89074bca931988a5e5d6c83cac1bb37a59da3f66e563
+generated: "2022-12-14T11:05:54.342466-08:00"

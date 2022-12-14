@@ -69,5 +69,5 @@
     "x64",
     "arm64"
   ],
-  "os": ["linux","darwin"]
+  "os": ["linux"]
 }

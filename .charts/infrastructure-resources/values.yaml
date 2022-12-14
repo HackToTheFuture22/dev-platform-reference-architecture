@@ -6,5 +6,9 @@
 # @param database.exampleDatabaseName.type rdbms
 databases: {}
 
-environment:
-  development: false
+ingress:
+  enabled: false
+
+service:
+  type: ClusterIP
+  port: 80

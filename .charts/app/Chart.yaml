@@ -30,4 +30,11 @@ dependencies:
   - name: infrastructure-resources
     version: 0.1.0
     repository: file://../infrastructure-resources
-    condition: infrastructure-resources.enabled
+  - name: postgresql
+    version: 12.1.2
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+    import-values:
+      - global.postgresql.auth.username
+      - global.postgresql.auth.password
+      - global.postgresql.auth.database

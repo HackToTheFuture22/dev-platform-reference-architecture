@@ -9,11 +9,8 @@ observability:
   installController: true
   installResources: false
 
-service:
-  port: 8080
-
 database:
-  enabled: true
+  enabled: false
 
 # -- List
 databases:
