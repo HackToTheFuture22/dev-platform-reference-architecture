@@ -36,6 +36,7 @@
     "io-ts": "^2.2.16",
     "io-ts-types": "^0.5.16",
     "nestjs-pino": "^1.4.0",
+    "octokit": "^2.0.10",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "runtypes": "^6.3.1",

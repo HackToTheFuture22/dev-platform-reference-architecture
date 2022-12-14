@@ -13,6 +13,6 @@ import { MessagingModule } from '@common/messaging/messaging.module';
 export class VcsModule implements OnModuleInit {
     constructor(private readonly gh: GitHubService) {}
     async onModuleInit() {
-        this.gh.registerWebhook({});
+        this.gh.createWebhook();
     }
 }

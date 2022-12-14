@@ -58,7 +58,7 @@ export class GithubWebhookController {
 
         // associate event with project
         const vcsUpdatedEvent = await this.eventRepo.save({
-            initialCommit: (new Date(initialCommit.timestamp)).getTime(),
+            updateInitialCommit: (new Date(initialCommit.timestamp)).getTime(),
             projectId: project.id
         });
 

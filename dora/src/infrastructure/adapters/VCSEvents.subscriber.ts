@@ -16,7 +16,23 @@ export class VCSEventsSubscriber {
   // note - should be a void return type
   @OnEvent(SERVICE_UPDATED)
   async afterServiceUpdatedEvent(payload: VCSUpdated) {
-    const leadTime = await this.repo.getByName(payload.projectName)
-    const events: [] = await this.repo.getEvents(leadTime.id);
+    let leadTime = await this.repo.getByName(payload.projectName)
+    if(!leadTime) {
+      leadTime = await this.repo.update({
+        name: payload.projectName,
+        leadTime: payload.updateTimestamp - payload.firstCommitTimestamp
+      })
+    } else {
+      const events: LeadTimeAdded[] = await this.repo.getEvents(leadTime.id);
+      const newLeadTimeAverage = events.reduce(
+        (acc, event) => acc + event.leadTime, (payload.updateTimestamp - payload.firstCommitTimestamp)
+        ) / events.length;
+      await this.repo.update({
+        id: leadTime.id,
+        name: payload.projectName,
+        leadTime: newLeadTimeAverage
+      });
+    }
+    this.repo.addEvent({ leadTimeId: leadTime.id, leadTime: payload.updateTimestamp - payload.firstCommitTimestamp})
   }
 }

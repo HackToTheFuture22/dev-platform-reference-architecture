@@ -1,8 +1,6 @@
 import { PrismaService } from "@common/prisma/adapters/prisma.service";
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { tryCatch } from "fp-ts/lib/Option";
-import { TaskEither } from "fp-ts/lib/TaskEither";
-import { Project, VCSUpdated } from "@prisma/client";
+import { Project, ProjectUpdated } from "@prisma/client";
 
 export type ProjectName = string;
 
@@ -15,7 +13,7 @@ export class ProjectRepository {
           where: { name },
           //We retrieve the whole aggregate root (project + its contact informations)
           include: {
-            VCSUpdated: true,
+            ProjectUpdated: true,
           },
         });
 
@@ -35,14 +33,14 @@ export class ProjectRepository {
 @Injectable()
 export class VCSUpdatedRepository {
     constructor(private prisma: PrismaService) { }
-    getByProjectId = async (projectId: number) => await this.prisma.vCSUpdated.findMany({
+    getByProjectId = async (projectId: number) => await this.prisma.projectUpdated.findMany({
       where: {projectId}
     });
 
-    save = async (event: VCSUpdated) => await this.prisma.vCSUpdated.create({
+    save = async ({updateInitialCommit, projectId}: ProjectUpdated) => await this.prisma.projectUpdated.create({
         data: {
-            initialCommit: event.initialCommit,
-            projectId: event.projectId
+            updateInitialCommit,
+            projectId
         },
     });
 }
