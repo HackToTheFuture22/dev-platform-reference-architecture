@@ -1,0 +1,9 @@
+dependencies:
+- name: platform
+  repository: file://../platform
+  version: 0.1.0
+- name: infrastructure-resources
+  repository: file://../infrastructure-resources
+  version: 0.1.0
+digest: sha256:e1c7cfe99d10f4f2e0af45b8944cbf52b60b15d149180081d63e35a8f58d5db1
+generated: "2022-12-14T11:36:31.107091027-06:00"

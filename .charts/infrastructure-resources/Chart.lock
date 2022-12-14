@@ -1,0 +1,6 @@
+dependencies:
+- name: platform
+  repository: file://../platform
+  version: 0.1.0
+digest: sha256:896b0c3f6c4e4bd6bf1c041756356be2ca7a6c56f1c9a1745429d77a1856c03d
+generated: "2022-12-14T11:48:27.569826853-06:00"
