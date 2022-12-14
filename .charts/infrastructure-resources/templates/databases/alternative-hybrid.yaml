@@ -1,0 +1,20 @@
+{{- if not .Values.environment.development -}}
+apiVersion: database.do.crossplane.io/v1alpha1
+kind: DODatabaseCluster
+metadata:
+  name: anyvibes
+spec:
+  forProvider:
+    engine: pg
+    version: "13"
+    numNodes: 3
+    size: db-s-2vcpu-4gb
+    region: nyc3
+    tags:
+      - "from-crossplane"
+  writeConnectionSecretToRef: 
+    namespace: crossplane-system
+    name: anyvibes-connections
+  providerConfigRef:
+    name: do-config
+{{- end -}}

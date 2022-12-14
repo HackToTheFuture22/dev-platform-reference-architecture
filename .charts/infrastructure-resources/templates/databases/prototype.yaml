@@ -1,19 +1,4 @@
-apiVersion: apiextensions.crossplane.io/v1
-kind: Composition
-metadata:
-  name: production-rdbms
-  labels:
-    crossplane.io/xrd: xpostgresqlinstances.database.example.org
-    provider: gcp
-spec:
-  writeConnectionSecretsToNamespace: crossplane-system
-  compositeTypeRef:
-    apiVersion: database.example.org/v1alpha1
-    kind: XRDBMS
-  resources:
-    - name: ProductionDB
-      base: # Spec DO DB
----
+{{- if .Values.environment.development -}}
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
@@ -29,6 +14,36 @@ spec:
   resources:
     - name: DevelopmentDB
       base: # Spec Postgresql Pod DB
+{{- else -}}
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: production-rdbms
+  labels:
+    crossplane.io/xrd: xrdbms.database.example.org
+    provider: do
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: database.example.org/v1alpha1
+    kind: XRDBMS
+  resources:
+    - name: ProductionDB
+      base:
+        apiVersion: database.do.crossplane.io/v1alpha1
+        kind: DODatabaseCluster
+        metadata:
+          name: anyvibes
+        spec:
+          forProvider:
+            engine: pg
+            version: "13"
+            numNodes: 3
+            size: db-s-2vcpu-4gb
+            region: nyc3
+            tags:
+              - "from-crossplane"
+{{- end -}}
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
