@@ -10,17 +10,42 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
-model User { 
-  id String @id
-  password String
-  contactInformation ContactInformation @relation(fields: [contactInformationId], references: [email])
-  contactInformationId String @unique
+model User {
+  id                   String             @id
+  password             String
+  contactInformation   ContactInformation @relation(fields: [contactInformationId], references: [email])
+  contactInformationId String             @unique
 }
 
 model ContactInformation {
-  email String @id
+  email            String  @id
   verificationCode String
-  isVerified Boolean @default(false)
-  user User?
+  isVerified       Boolean @default(false)
+  user             User?
+}
+
+// The name of the component
+model Project {
+  id             Int             @id @default(autoincrement())
+  name           String
+  ProjectUpdated ProjectUpdated?
+}
+
+model ProjectUpdated {
+  updateInitialCommit Int
+  project             Project @relation(fields: [projectId], references: [id])
+  projectId           Int     @unique
+}
+
+model LeadTime {
+  id               Int      @id @default(autoincrement())
+  name             String
+  leadTime         Int
+  projectStartDate DateTime @default(now())
+}
+
+model LeadTimeAdded {
+  id Int @id @default(autoincrement())
+  leadTimeId Int @unique
+  leadTime   Int
 }

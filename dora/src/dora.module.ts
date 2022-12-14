@@ -1,10 +1,10 @@
 import { Module, Global } from '@nestjs/common';
-import { CqrsModule } from '@nestjs/cqrs';
 import { VCSEventsSubscriber } from './infrastructure/adapters/VCSEvents.subscriber';
+import {MessagingModule} from '@common/messaging/messaging.module';
 
 @Global()
 @Module({
-    imports: [CqrsModule],
+    imports: [MessagingModule],
     providers: [VCSEventsSubscriber],
     exports: [VCSEventsSubscriber],
 })

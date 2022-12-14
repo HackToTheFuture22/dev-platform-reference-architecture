@@ -18,6 +18,10 @@
     "paths": {
       "@app/api-gateway": ["api-gateway/src"],
       "@app/api-gateway/*": ["api-gateway/src/*"],
+      "@common/github": ["common/github/src"],
+      "@common/github/*": ["common/github/src/*"],
+      "@common/messaging": ["common/messaging/src"],
+      "@common/messaging/*": ["common/messaging/src/*"],
       "@common/logger": ["common/logger/src"],
       "@common/logger/*": ["common/logger/src/*"],
       "@common/domain-event-publisher": ["common/domain-event-publisher/src"],
