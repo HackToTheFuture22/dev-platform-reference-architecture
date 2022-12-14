@@ -41,4 +41,4 @@ init-platform: init
 	@bin/setup-platform-dev.sh
 
 build:
-	@bin/build.sh ./nest-clean-architecture-ddd-example
+	@bin/build.sh .

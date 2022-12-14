@@ -8,4 +8,5 @@ then
     exit 1
 fi
 
-pack build dora_app_image -B paketobuildpacks/builder:base -p ${BUILD_PATH} -e NODE_OPTIONS=--openssl-legacy-provider
+pack build dora_app_image --buildpack paketo-buildpacks/nodejs \
+  --builder paketobuildpacks/builder:base -e NODE_OPTIONS=--openssl-legacy-provider -e NODE_ENV=development

@@ -4,16 +4,16 @@
   "author": "Vincent JOUANNE",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_OPTIONS=--openssl-legacy-provider nest build api-gateway",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider nest start api-gateway",
+    "build": "yarn prisma:client && NODE_OPTIONS=--openssl-legacy-provider nest build api-gateway",
+    "start": "yarn prisma:migrate && NODE_OPTIONS=--openssl-legacy-provider nest start api-gateway",
     "start:watch": "yarn start -w",
     "test:unit": "jest --config ./jest-unit.json --coverage",
     "test:inte": "yarn prisma:migrate && jest --config ./jest-integration.json --runInBand",
     "test:e2e": "yarn prisma:migrate && jest --config ./jest-e2e.json --runInBand --forceExit",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "prisma:client": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate dev --name init"
+    "prisma:client": "yarn prisma generate",
+    "prisma:migrate": "yarn prisma migrate dev --name init"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.6",
@@ -64,5 +64,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "cpu": [
+    "x64"
+  ],
+  "os": ["linux"]
 }

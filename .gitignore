@@ -14,4 +14,4 @@ infra/bootstrap/.terraform/
 # IDE - VSCode
 .vscode/*
 .idea/
-
+.charts/**/*.tgz
