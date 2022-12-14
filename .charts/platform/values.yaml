@@ -9,6 +9,15 @@ observability:
   installController: true
   installResources: false
 
+# -- List
+databases:
+  - name: db-name # instruments local database
+    type: rdbms
+    environment: local
+  - name: prod-db-name # instruments DigitalOcean's managed database service
+    type: rdbms
+    environment: prod
+
 # Vendor
 
 cert-manager:
