@@ -1,0 +1,22 @@
+{{ /* foreach databases key -> value */}}
+{{ /* if local env */ }}
+apiVersion: database.example.org/v1alpha1
+kind: RDBMS
+metadata:
+  name: {{ /* .name */}}
+spec:
+  parameters:
+    storageGB: 20
+  compositionRef:
+    name: development-rdbms
+{{ /* else if remote */ }}
+apiVersion: database.example.org/v1alpha1
+kind: RDBMS
+metadata:
+  name: {{ /* .name */}}
+spec:
+  parameters:
+    storageGB: 20
+  compositionRef:
+    name: production-rdbms
+{{ /* end */}}

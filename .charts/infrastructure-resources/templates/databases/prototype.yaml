@@ -1,0 +1,45 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: production-rdbms
+  labels:
+    crossplane.io/xrd: xpostgresqlinstances.database.example.org
+    provider: gcp
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: database.example.org/v1alpha1
+    kind: XRDBMS
+  resources:
+    - name: ProductionDB
+      base: # Spec DO DB
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: development-rdbms
+  labels:
+    crossplane.io/xrd: xpostgresqlinstances.database.example.org
+    provider: gcp
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: database.example.org/v1alpha1
+    kind: XRDBMS
+  resources:
+    - name: DevelopmentDB
+      base: # Spec Postgresql Pod DB
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xpostgresqlinstances.database.example.org
+spec:
+  group: database.example.org
+  names:
+    kind: XRDBMS
+    plural: xrdbmses
+  claimNames:
+    kind: RDBMS
+    plural: RDBMS
+---
