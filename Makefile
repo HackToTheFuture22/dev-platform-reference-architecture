@@ -1,4 +1,5 @@
 GIT_COMMIT = $(shell git rev-parse HEAD)
+KIND_CLUSTER_NAME = dora-app
 
 define is_installed
 if ! command -v $(1) &> /dev/null; \
@@ -35,7 +36,10 @@ dev: init docker-is-installed
 	@bin/run.sh
 
 ensure-kind-cluster: kind-is-installed
-	@./bin/ensure-kind-cluster dora-app
+	@./bin/ensure-kind-cluster ${KIND_CLUSTER_NAME}
+
+clean: kind-is-installed
+	@kind delete cluster --name ${KIND_CLUSTER_NAME}
 
 init-platform: init
 	@bin/setup-platform-dev.sh
