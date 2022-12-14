@@ -9,3 +9,12 @@ resource "vault_kv_secret_v2" "traefik_ee_license" {
   name      = "traefik_ee_license"
   data_json = jsonencode({ license = var.traefik_ee_license })
 }
+
+resource "vault_policy" "read" {
+  name   = "read-traefik"
+  policy = <<EOT
+  path "secret/traefik_ee_license" {
+    capabilities = ["read"]
+  }
+  EOT
+}
