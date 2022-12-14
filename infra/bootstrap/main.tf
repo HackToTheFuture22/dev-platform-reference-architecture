@@ -57,3 +57,7 @@ provider "vault" {
   address = var.vault_addr
   token   = var.vault_token
 }
+
+variable "traefik_ee_license" {
+  description = "Traefik Enterprise Edition license key"
+}
