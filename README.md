@@ -2,7 +2,27 @@
 
 ## GitOps
 
+- Codefresh auto-syncs our platform and application code and deploys to
+  a kubernetes cluster
+- Crossplane creates application level resources via Kubernetes, such as
+  Databases and Container Registries
+- Container images are built via buildpacks, abstracting away the Docker concern
+  from engineers
+
+Nice to haves:
+- Integrating OpenTelemetry with Grafana
+
 ## Cloud Platform
+
+- Terraform creates a kubernetes cluster, provisions vault
+- Secret data is imported from terraform into vault to be exported as
+  `ExternalSecrets`
+- Crossplane enables a relatively low terraform footprint
+
+Nice to Haves:
+
+- Additional identity backends for Vault
+
 
 ## Local Development
 
