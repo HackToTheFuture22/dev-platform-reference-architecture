@@ -134,3 +134,21 @@ The services that are too weird to keep in the test (mailing for example) will b
 I/O: An endpoint.
 
 ![E2E testing](./docs/assets/end-to-end-testing.png)
+
+## Local Development Progress
+
+### Current State
+
+- Nest app can be run locally.
+- Kind cluster provisions on command. Can also be cleaned up.
+- Auto configuration of local development concerns.
+- A simple Kubernetes experience using Devspace is configured.
+- Nest App can be successfully built locally via cloud native build packs.
+- Nest App can be side loaded into kind cluster.
+- Nest App can be launched via kubernetes (in kind cluster), without Platform. Postgresql is deployed alongside.
+
+### Nice to have
+
+- Platform running in kind cluster alongside Nest App.
+- Remove the need for environment configuration. (make init)
+- Autoloading (sideloading) images during development.
