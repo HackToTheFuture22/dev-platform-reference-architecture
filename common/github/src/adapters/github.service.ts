@@ -1,14 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Octokit } from '@octokit/rest';
+import { ConfigService } from "@nestjs/config";
+import { Octokit } from "@octokit/rest";
 
-
-@Injectable()
 export class GitHubService {
 
   private octokit: Octokit;
   constructor(private readonly configService: ConfigService){
-    this.octokit = new Octokit();
+    this.octokit = new Octokit({
+      auth: this.configService.get('GITHUB_TOKEN'),
+    });
   }
 
   async createWebhook(): Promise<void> {
