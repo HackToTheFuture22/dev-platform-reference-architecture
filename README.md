@@ -1,4 +1,8 @@
-# Dev Platform
+# Dev Platform Reference Architecture
+- CLI
+- GitOps
+- Decoupling from Infrastructure
+
 
 ## GitOps
 
@@ -27,6 +31,20 @@ Nice to Haves:
 ## Local Development
 
 ## Application
+
+### Architecture Features
+- [ ] Onion Architecture
+- [ ] Event Sourcing + CQRS
+- [ ] SDKs
+    - Messaging
+    - 3rd Party SDKs
+    - Features (not integrated)
+### Wish we could have accomplished:
+- Finishing
+- 
+
+
+## Planned but not accomplished
 
 ## Contributing
 <!-- TODO add Docker installation automation -->
